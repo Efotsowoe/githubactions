@@ -1,0 +1,13 @@
+terraform {
+  backend "s3" {
+    bucket = "jomacs-ce-tf-state-bucket"
+    key    = "devops/infrastructure/resources.tfstate"
+    region = "us-west-2"
+  }
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "5.39.0"
+    }
+  }
+}
