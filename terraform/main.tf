@@ -38,3 +38,5 @@ resource "aws_s3_bucket" "example" {
     Name = "${var.name}-variables-demo-s3"
   }
 }
+
+########################################
