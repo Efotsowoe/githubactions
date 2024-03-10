@@ -18,20 +18,22 @@ jobs:
         working-directory: terraform 
 
     steps:
-    - name: Checkout Repo 
-      uses: actions/checkout@v4 
+    - uses: actions/checkout@v4 
       
-      uses: aws-actions/configure-aws-credentials@v4
+    - uses: aws-actions/configure-aws-credentials@v4
       with: 
         aws-region: us-west-2 
         role-to-assume: arn:aws:iam::213939666921:role/GithubActions
         role-session-name: github-actions
 
-    - name: Setup Terraform 
-      uses: hashicorp/setup-terraform@v2 
+    - uses: hashicorp/setup-terraform@v3
+      with: 
+        terraform_version: "1.6.6"
 
     - name: Terraform init 
+      id: init
       run: terraform init 
 
     - name: Terraform apply 
+      id: apply
       run: terraform apply --auto-approve 
